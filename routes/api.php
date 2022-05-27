@@ -20,10 +20,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/users/{name?}', function ($name = null) {
     return 'Hi ' . $name;
-})->where('name', '[a-zA-Z]+');
+});
 
 Route::get('/products/{id?}', function ($id = null) {
     return 'Product id is ' . $id;
-})->where('id', '[0-9]+');
+});
 
-//
+Route::match(['get','post'], '/posts', function (Request $req) {
+    return 'Requested method is '. $req->method();
+});
+
+Route::any('/students', function (Request $req) {
+    return 'Requested method is '. $req->method();
+});
