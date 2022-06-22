@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\UploadController;
+use App\Http\Controllers\PaginationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\LoginController;
@@ -10,6 +12,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
+use App\PaymentGateway\Payment;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +25,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ProductController::class, 'index'])->name('product.index');
+Route::get('/{locale}', function ($locale) {
+    App::setLocale($locale);
+    return view('welcome');
+});
 
-// Route::get('/home/{name?}', [HomeController::class, 'index'])->name('home.index');
+// Route::get('/', [ProductController::class, 'index'])->name('product.index');
+
+Route::get('/home/{name?}', [HomeController::class, 'index'])->name('home.index');
 
 Route::get('/user', [UserController::class,'index'])->name('user.index');
 
@@ -86,4 +94,14 @@ Route::get('/about', function () {
 
 Route::get('/contact', function () {
     return view('contact');
+});
+
+Route::get('/users', [PaginationController::class,'allUsers']);
+
+Route::get('/upload', [UploadController::class,'uploadForm']);
+
+Route::post('/upload', [UploadController::class,'uploadFile'])->name('upload.uploadfile');
+
+Route::get('/payment', function () {
+    return Payment::process();
 });
