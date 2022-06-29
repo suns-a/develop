@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\PaginationController;
 use App\Http\Controllers\PostController;
@@ -25,10 +27,10 @@ use App\PaymentGateway\Payment;
 |
 */
 
-Route::get('/{locale}', function ($locale) {
-    App::setLocale($locale);
-    return view('welcome');
-});
+// Route::get('/{locale}', function ($locale) {
+//     App::setLocale($locale);
+//     return view('welcome');
+// });
 
 // Route::get('/', [ProductController::class, 'index'])->name('product.index');
 
@@ -78,7 +80,7 @@ Route::get('/left-join', [PostController::class,'leftJoinClause'])->name('post.l
 
 Route::get('/right-join', [PostController::class,'rightJoinClause'])->name('post.rightjoin');
 
-Route::get('/all-posts', [PostController::class,'getAllPostsUsingModel'])->name('post.getallpostsusingmodel');
+Route::get('/all-posts', [PostController::class,'getAllPostsUsingModel'])->name('post.getAllPostsUsingModel');
 
 Route::get('/test', function () {
     return view('test');
@@ -105,3 +107,13 @@ Route::post('/upload', [UploadController::class,'uploadFile'])->name('upload.upl
 Route::get('/payment', function () {
     return Payment::process();
 });
+
+Route::get('/send-email', [MailController::class,'sendEmail']);
+
+Route::get('/students', [StudentController::class,'fetchStudents']);
+
+Route::get('/add-post', [PostController::class,'addPost']);
+
+Route::get('/add-user', [UserController::class,'insertRecord']);
+
+Route::get('/get-phone/{id}', [UserController::class,'fetchPhoneByUser']);
