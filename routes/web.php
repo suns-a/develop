@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\EmpController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\UploadController;
@@ -112,8 +115,34 @@ Route::get('/send-email', [MailController::class,'sendEmail']);
 
 Route::get('/students', [StudentController::class,'fetchStudents']);
 
-Route::get('/add-post', [PostController::class,'addPost']);
-
 Route::get('/add-user', [UserController::class,'insertRecord']);
 
 Route::get('/get-phone/{id}', [UserController::class,'fetchPhoneByUser']);
+
+Route::get('/add-post', [PostController::class,'addPost']);
+
+Route::get('/add-comment/{id}', [PostController::class,'addComment']);
+
+Route::get('/get-comments/{id}', [PostController::class,'getCommentsByPost']);
+
+Route::get('/add-roles', [RoleController::class,'addRole']);
+
+Route::get('/add-users', [RoleController::class,'addUser']);
+
+Route::get('/rolesbyuser/{id}', [RoleController::class,'getAllRolesByUser']);
+
+Route::get('/usersbyrole/{id}', [RoleController::class,'getAllUsersByRole']);
+
+Route::get('/add-employee', [EmployeeController::class,'addEmployee']);
+
+Route::get('/export-excel', [EmployeeController::class,'exportIntoExcel']);
+
+Route::get('/export-csv', [EmployeeController::class,'exportIntoCSV']);
+
+Route::get('/get-all-employee', [EmpController::class,'getAllEmployees']);
+
+Route::get('/download-pdf', [EmpController::class,'downloadPDF']);
+
+Route::get('/import-form', [EmployeeController::class,'importForm']);
+
+Route::post('/import', [EmployeeController::class,'import'])->name('employee.import');
