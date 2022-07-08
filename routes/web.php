@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\EditorController;
+use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\DropzoneController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\EmpController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\RoleController;
@@ -146,3 +150,15 @@ Route::get('/download-pdf', [EmpController::class,'downloadPDF']);
 Route::get('/import-form', [EmployeeController::class,'importForm']);
 
 Route::post('/import', [EmployeeController::class,'import'])->name('employee.import');
+
+Route::get('/resize-image', [ImageController::class,'resizeImage']);
+
+Route::post('/resize-image', [ImageController::class,'resizeImageSubmit'])->name('image.resize');
+
+Route::get('/dropzone', [DropzoneController::class,'dropzone']);
+
+Route::post('/dropzone-store', [DropzoneController::class,'dropzoneStore'])->name('dropzone.store');
+
+Route::get('/gallery', [GalleryController::class,'gallery']);
+
+Route::get('/editor', [EditorController::class, 'editor']);
