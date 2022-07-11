@@ -119,6 +119,18 @@ Route::get('/send-email', [MailController::class,'sendEmail']);
 
 Route::get('/students', [StudentController::class,'fetchStudents']);
 
+Route::get('/add-student', [StudentController::class,'addStudent']);
+
+Route::post('/add-student', [StudentController::class,'storeStudent'])->name('student.store');
+
+Route::get('/all-student', [StudentController::class,'students']);
+
+Route::get('/edit-student/{id}', [StudentController::class,'editStudent']);
+
+Route::post('/update-student', [StudentController::class,'updateStudent'])->name('student.update');
+
+Route::get('/delete-student/{id}', [StudentController::class,'deleteStudent']);
+
 Route::get('/add-user', [UserController::class,'insertRecord']);
 
 Route::get('/get-phone/{id}', [UserController::class,'fetchPhoneByUser']);
