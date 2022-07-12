@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\TestController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EditorController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\DropzoneController;
@@ -174,3 +176,15 @@ Route::post('/dropzone-store', [DropzoneController::class,'dropzoneStore'])->nam
 Route::get('/gallery', [GalleryController::class,'gallery']);
 
 Route::get('/editor', [EditorController::class, 'editor']);
+
+Route::get('/contact-us', [ContactController::class, 'contact']);
+
+Route::post('/send-message', [ContactController::class, 'sendEmail'])->name('contact.send');
+
+Route::get('/get-name', [TestController::class,'getFirstLastName']);
+
+Route::get('/add-product', [ProductController::class, 'addProducts']);
+
+Route::get('/search', [ProductController::class, 'search']);
+
+Route::get('/autocomplete', [ProductController::class, 'autocomplete'])->name('autocomplete');
