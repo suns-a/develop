@@ -69,7 +69,7 @@
     @if(Session::has('student_added'))
         <script>
             swal("Great Job!","{!! Session::get('student_added') !!}","success",{
-                button:"OK",
+                button:"OK"
             })
         </script>
     @endif
