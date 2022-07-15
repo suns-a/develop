@@ -37,7 +37,7 @@
                                             <td>{{$newStudent->email}}</td>
                                             <td>{{$newStudent->phone}}</td>
                                             <td>
-                                                <a href="javascript:void(0)" onclick="editStudent({{$newStudent->id}})" class="btn btn-info">Edit</a>
+                                                <a href="javascript:void(0)" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#studentModal" onclick="editStudent({{$newStudent->id}})">Edit</a>
                                             </td>
                                         </tr>
                                     @endforeach
