@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\NewStudentController;
+use App\Http\Controllers\ZipController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EditorController;
@@ -188,3 +190,15 @@ Route::get('/add-product', [ProductController::class, 'addProducts']);
 Route::get('/search', [ProductController::class, 'search']);
 
 Route::get('/autocomplete', [ProductController::class, 'autocomplete'])->name('autocomplete');
+
+Route::get('/zip', [ZipController::class, 'zipFile']);
+
+Route::get('/employee', [EmployeeController::class, 'index']);
+
+Route::get('/new-students', [NewStudentController::class, 'index']);
+
+Route::post('/add-new-students', [NewStudentController::class, 'addStudent'])->name('student.add');
+
+Route::get('/new-students/{id}', [NewStudentController::class, 'getStudentById']);
+
+Route::put('/new-students', [NewStudentController::class, 'updateStudent'])->name('student.update');
