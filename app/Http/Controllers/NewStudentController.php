@@ -40,4 +40,17 @@ class NewStudentController extends Controller
         $newStudent->save();
         return response()->json($newStudent);
     }
+
+    public function deleteStudent($id)
+    {
+        $student = NewStudent::find($id);
+        $student->delete();
+        return response()->json(['success'=>'Record has been deleted']);
+    }
+    public function deleteCheckedStudents(Request $request)
+    {
+        $ids = $request->ids;
+        NewStudent::whereIn('id', $ids)->delete();
+        return response()->json(['success'=>"Students have been deleted!"]);
+    }
 }

@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\ChartController;
+use App\Http\Controllers\NewPostController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\NewStudentController;
 use App\Http\Controllers\ZipController;
 use App\Http\Controllers\TestController;
@@ -202,3 +205,15 @@ Route::post('/add-new-students', [NewStudentController::class, 'addStudent'])->n
 Route::get('/new-students/{id}', [NewStudentController::class, 'getStudentById']);
 
 Route::put('/new-students', [NewStudentController::class, 'updateStudent'])->name('student.update');
+
+Route::delete('/new-students/{id}', [NewStudentController::class, 'deleteStudent']);
+
+Route::delete('/selected-new-students', [NewStudentController::class, 'deleteCheckedStudents'])->name('student.deleteSelected');
+
+Route::get('/register', [AuthController::class, 'index']);
+
+Route::post('/register', [AuthController::class, 'registerSubmit'])->name('auth.registersubmit');
+
+Route::get('/new-posts', [NewPostController::class, 'index']);
+
+Route::get('/chart', [ChartController::class, 'index']);

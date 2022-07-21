@@ -16,12 +16,15 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            Students <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#studentModal">Add New Student</a>
+                            Students 
+                            <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#studentModal">Add New Student</a>
+                            <a href="#" class="btn btn-danger" id="deleteAllSelectedRecord">Delete Selected</a>
                         </div>
                         <div class="card-body">
                             <table id="studentTable" class="table">
                                 <thead>
                                     <tr>
+                                        <th><input type="checkbox" id="chkCheckAll" /></th>
                                         <th>First Name</th>
                                         <th>Last Name</th>
                                         <th>Email</th>
@@ -32,12 +35,14 @@
                                 <tbody>
                                     @foreach($newStudents as $newStudent)
                                         <tr id="sid{{$newStudent->id}}">
+                                            <td><input type="checkbox" name="ids" class="checkBoxClass" value="{{$newStudent->id}}" /></td>
                                             <td>{{$newStudent->firstname}}</td>
                                             <td>{{$newStudent->lastname}}</td>
                                             <td>{{$newStudent->email}}</td>
                                             <td>{{$newStudent->phone}}</td>
                                             <td>
                                                 <a href="javascript:void(0)" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#studentModal" onclick="editStudent({{$newStudent->id}})">Edit</a>
+                                                <a href="javascript:void(0)" onclick="deleteStudent({{$newStudent->id}})" class="btn btn-danger">Delete</a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -202,6 +207,56 @@
     });
 </script>
 
+<script>
+    function deleteStudent(id)
+    {
+        if(confirm("Do you realy want to delete this record?"))
+        {
+            $.ajax({
+                url:'/new-students/'+id,
+                type:'DELETE',
+                data:{
+                    _token : $("input[name=_token]").val()
+                },
+                success:function(response)
+                {
+                    $("#sid"+id).remove();
+                }
+            })
+        }
+    }
+</script>
 
+<script>
+    $(function(e){
+        $("#chkCheckAll").click(function(){
+            $(".checkBoxClass").prop('checked' ,$(this).prop('checked'));
+        });
+
+        $("#deleteAllSelectedRecord").click(function(e){
+            e.preventDefault();
+            var allids = [];
+     
+
+        $("input:checkbox[name=ids]:checked").each(function(){
+            allids.push($(this).val());
+        });
+
+        $.ajax({
+            url:"{{route('student.deleteSelected')}}",
+            type:"DELETE",
+            data:{
+                _token:$("input[name=_token]").val(),
+                ids:allids
+            },
+            success:function(response){
+                $.each(allids,function(key,val){
+                    $("#sid"+val).remove();
+                })
+            }
+        });
+    })
+    });
+</script>
 </body>
 </html>
