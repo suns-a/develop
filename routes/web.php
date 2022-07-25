@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FormController;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\NewPostController;
 use App\Http\Controllers\AuthController;
@@ -41,179 +42,190 @@ use App\PaymentGateway\Payment;
 |
 */
 
-// Route::get('/{locale}', function ($locale) {
-//     App::setLocale($locale);
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
 // Route::get('/', [ProductController::class, 'index'])->name('product.index');
 
-Route::get('/home/{name?}', [HomeController::class, 'index'])->name('home.index');
+// Route::get('/home/{name?}', [HomeController::class, 'index'])->name('home.index');
 
-Route::get('/user', [UserController::class,'index'])->name('user.index');
+// Route::get('/user', [UserController::class,'index'])->name('user.index');
 
-Route::get('/posts', [ClientController::class,'getAllPost'])->name('posts.getallpost');
+// Route::get('/posts', [ClientController::class,'getAllPost'])->name('posts.getallpost');
 
-Route::get('/posts/{id}', [ClientController::class,'getPostById'])->name('posts.getpostbyid');
+// Route::get('/posts/{id}', [ClientController::class,'getPostById'])->name('posts.getpostbyid');
 
-Route::get('/add-post', [ClientController::class,'addPost'])->name('posts.addpost');
+// Route::get('/add-post', [ClientController::class,'addPost'])->name('posts.addpost');
 
-Route::get('/update-post', [ClientController::class,'updatePost'])->name('posts.updatepost');
+// Route::get('/update-post', [ClientController::class,'updatePost'])->name('posts.updatepost');
 
-Route::get('/delete-post/{id}', [ClientController::class,'deletePost'])->name('posts.deletepost');
+// Route::get('/delete-post/{id}', [ClientController::class,'deletePost'])->name('posts.deletepost');
 
-Route::get('/fluent-string', [FluentController::class,'index'])->name('fluents.index');
+// Route::get('/fluent-string', [FluentController::class,'index'])->name('fluents.index');
 
-Route::get('/login', [LoginController::class,'index'])->name('login.index')->middleware('checkuser');
+// Route::get('/login', [LoginController::class,'index'])->name('login.index')->middleware('checkuser');
 
-Route::post('/login', [LoginController::class,'loginSubmit'])->name('login.submit');
+// Route::post('/login', [LoginController::class,'loginSubmit'])->name('login.submit');
 
-Route::get('/session/get', [SessionController::class,'getSessionData'])->name('session.get');
+// Route::get('/session/get', [SessionController::class,'getSessionData'])->name('session.get');
 
-Route::get('/session/set', [SessionController::class,'storeSessionData'])->name('session.store');
+// Route::get('/session/set', [SessionController::class,'storeSessionData'])->name('session.store');
 
-Route::get('/session/remove', [SessionController::class,'deleteSessionData'])->name('session.delete');
+// Route::get('/session/remove', [SessionController::class,'deleteSessionData'])->name('session.delete');
 
-Route::get('/posts', [PostController::class,'getAllPost'])->name('post.getallpost');
+// Route::get('/posts', [PostController::class,'getAllPost'])->name('post.getallpost');
 
-Route::get('/add-post', [PostController::class,'addPost'])->name('post.add');
+// Route::get('/add-post', [PostController::class,'addPost'])->name('post.add');
 
-Route::post('/add-post', [PostController::class,'addPostSubmit'])->name('post.addsubmit');
+// Route::post('/add-post', [PostController::class,'addPostSubmit'])->name('post.addsubmit');
 
-Route::get('/posts/{id}', [PostController::class,'getPostById'])->name('post.getbyid');
+// Route::get('/posts/{id}', [PostController::class,'getPostById'])->name('post.getbyid');
 
-Route::get('/delete-post/{id}', [PostController::class,'deletePost'])->name('post.delete');
+// Route::get('/delete-post/{id}', [PostController::class,'deletePost'])->name('post.delete');
 
-Route::get('/edit-post/{id}', [PostController::class,'editPost'])->name('post.edit');
+// Route::get('/edit-post/{id}', [PostController::class,'editPost'])->name('post.edit');
 
-Route::post('/update-post', [PostController::class,'updatePost'])->name('post.update');
+// Route::post('/update-post', [PostController::class,'updatePost'])->name('post.update');
 
-Route::get('/inner-join', [PostController::class,'innerJoinClause'])->name('post.innerjoin');
+// Route::get('/inner-join', [PostController::class,'innerJoinClause'])->name('post.innerjoin');
 
-Route::get('/left-join', [PostController::class,'leftJoinClause'])->name('post.leftjoin');
+// Route::get('/left-join', [PostController::class,'leftJoinClause'])->name('post.leftjoin');
 
-Route::get('/right-join', [PostController::class,'rightJoinClause'])->name('post.rightjoin');
+// Route::get('/right-join', [PostController::class,'rightJoinClause'])->name('post.rightjoin');
 
-Route::get('/all-posts', [PostController::class,'getAllPostsUsingModel'])->name('post.getAllPostsUsingModel');
+// Route::get('/all-posts', [PostController::class,'getAllPostsUsingModel'])->name('post.getAllPostsUsingModel');
 
-Route::get('/test', function () {
-    return view('test');
-});
+// Route::get('/test', function () {
+//     return view('test');
+// });
 
-Route::get('/home', function () {
-    return view('index');
-});
+// Route::get('/home', function () {
+//     return view('index');
+// });
 
-Route::get('/about', function () {
-    return view('about');
-});
+// Route::get('/about', function () {
+//     return view('about');
+// });
 
-Route::get('/contact', function () {
-    return view('contact');
-});
+// Route::get('/contact', function () {
+//     return view('contact');
+// });
 
-Route::get('/users', [PaginationController::class,'allUsers']);
+// Route::get('/users', [PaginationController::class,'allUsers']);
 
-Route::get('/upload', [UploadController::class,'uploadForm']);
+// Route::get('/upload', [UploadController::class,'uploadForm']);
 
-Route::post('/upload', [UploadController::class,'uploadFile'])->name('upload.uploadfile');
+// Route::post('/upload', [UploadController::class,'uploadFile'])->name('upload.uploadfile');
 
-Route::get('/payment', function () {
-    return Payment::process();
-});
+// Route::get('/payment', function () {
+//     return Payment::process();
+// });
 
-Route::get('/send-email', [MailController::class,'sendEmail']);
+// Route::get('/send-email', [MailController::class,'sendEmail']);
 
-Route::get('/students', [StudentController::class,'fetchStudents']);
+// Route::get('/students', [StudentController::class,'fetchStudents']);
 
-Route::get('/add-student', [StudentController::class,'addStudent']);
+// Route::get('/add-student', [StudentController::class,'addStudent']);
 
-Route::post('/add-student', [StudentController::class,'storeStudent'])->name('student.store');
+// Route::post('/add-student', [StudentController::class,'storeStudent'])->name('student.store');
 
-Route::get('/all-student', [StudentController::class,'students']);
+// Route::get('/all-student', [StudentController::class,'students']);
 
-Route::get('/edit-student/{id}', [StudentController::class,'editStudent']);
+// Route::get('/edit-student/{id}', [StudentController::class,'editStudent']);
 
-Route::post('/update-student', [StudentController::class,'updateStudent'])->name('student.update');
+// Route::post('/update-student', [StudentController::class,'updateStudent'])->name('student.update');
 
-Route::get('/delete-student/{id}', [StudentController::class,'deleteStudent']);
+// Route::get('/delete-student/{id}', [StudentController::class,'deleteStudent']);
 
-Route::get('/add-user', [UserController::class,'insertRecord']);
+// Route::get('/add-user', [UserController::class,'insertRecord']);
 
-Route::get('/get-phone/{id}', [UserController::class,'fetchPhoneByUser']);
+// Route::get('/get-phone/{id}', [UserController::class,'fetchPhoneByUser']);
 
-Route::get('/add-post', [PostController::class,'addPost']);
+// Route::get('/add-post', [PostController::class,'addPost']);
 
-Route::get('/add-comment/{id}', [PostController::class,'addComment']);
+// Route::get('/add-comment/{id}', [PostController::class,'addComment']);
 
-Route::get('/get-comments/{id}', [PostController::class,'getCommentsByPost']);
+// Route::get('/get-comments/{id}', [PostController::class,'getCommentsByPost']);
 
-Route::get('/add-roles', [RoleController::class,'addRole']);
+// Route::get('/add-roles', [RoleController::class,'addRole']);
 
-Route::get('/add-users', [RoleController::class,'addUser']);
+// Route::get('/add-users', [RoleController::class,'addUser']);
 
-Route::get('/rolesbyuser/{id}', [RoleController::class,'getAllRolesByUser']);
+// Route::get('/rolesbyuser/{id}', [RoleController::class,'getAllRolesByUser']);
 
-Route::get('/usersbyrole/{id}', [RoleController::class,'getAllUsersByRole']);
+// Route::get('/usersbyrole/{id}', [RoleController::class,'getAllUsersByRole']);
 
-Route::get('/add-employee', [EmployeeController::class,'addEmployee']);
+// Route::get('/add-employee', [EmployeeController::class,'addEmployee']);
 
-Route::get('/export-excel', [EmployeeController::class,'exportIntoExcel']);
+// Route::get('/export-excel', [EmployeeController::class,'exportIntoExcel']);
 
-Route::get('/export-csv', [EmployeeController::class,'exportIntoCSV']);
+// Route::get('/export-csv', [EmployeeController::class,'exportIntoCSV']);
 
-Route::get('/get-all-employee', [EmpController::class,'getAllEmployees']);
+// Route::get('/get-all-employee', [EmpController::class,'getAllEmployees']);
 
-Route::get('/download-pdf', [EmpController::class,'downloadPDF']);
+// Route::get('/download-pdf', [EmpController::class,'downloadPDF']);
 
-Route::get('/import-form', [EmployeeController::class,'importForm']);
+// Route::get('/import-form', [EmployeeController::class,'importForm']);
 
-Route::post('/import', [EmployeeController::class,'import'])->name('employee.import');
+// Route::post('/import', [EmployeeController::class,'import'])->name('employee.import');
 
-Route::get('/resize-image', [ImageController::class,'resizeImage']);
+// Route::get('/resize-image', [ImageController::class,'resizeImage']);
 
-Route::post('/resize-image', [ImageController::class,'resizeImageSubmit'])->name('image.resize');
+// Route::post('/resize-image', [ImageController::class,'resizeImageSubmit'])->name('image.resize');
 
-Route::get('/dropzone', [DropzoneController::class,'dropzone']);
+// Route::get('/dropzone', [DropzoneController::class,'dropzone']);
 
-Route::post('/dropzone-store', [DropzoneController::class,'dropzoneStore'])->name('dropzone.store');
+// Route::post('/dropzone-store', [DropzoneController::class,'dropzoneStore'])->name('dropzone.store');
 
-Route::get('/gallery', [GalleryController::class,'gallery']);
+// Route::get('/gallery', [GalleryController::class,'gallery']);
 
-Route::get('/editor', [EditorController::class, 'editor']);
+// Route::get('/editor', [EditorController::class, 'editor']);
 
-Route::get('/contact-us', [ContactController::class, 'contact']);
+// Route::get('/contact-us', [ContactController::class, 'contact']);
 
-Route::post('/send-message', [ContactController::class, 'sendEmail'])->name('contact.send');
+// Route::post('/send-message', [ContactController::class, 'sendEmail'])->name('contact.send');
 
-Route::get('/get-name', [TestController::class,'getFirstLastName']);
+// Route::get('/get-name', [TestController::class,'getFirstLastName']);
 
-Route::get('/add-product', [ProductController::class, 'addProducts']);
+// Route::get('/add-product', [ProductController::class, 'addProducts']);
 
-Route::get('/search', [ProductController::class, 'search']);
+// Route::get('/search', [ProductController::class, 'search']);
 
-Route::get('/autocomplete', [ProductController::class, 'autocomplete'])->name('autocomplete');
+// Route::get('/autocomplete', [ProductController::class, 'autocomplete'])->name('autocomplete');
 
-Route::get('/zip', [ZipController::class, 'zipFile']);
+// Route::get('/zip', [ZipController::class, 'zipFile']);
 
-Route::get('/employee', [EmployeeController::class, 'index']);
+// Route::get('/employee', [EmployeeController::class, 'index']);
 
-Route::get('/new-students', [NewStudentController::class, 'index']);
+// Route::get('/new-students', [NewStudentController::class, 'index']);
 
-Route::post('/add-new-students', [NewStudentController::class, 'addStudent'])->name('student.add');
+// Route::post('/add-new-students', [NewStudentController::class, 'addStudent'])->name('student.add');
 
-Route::get('/new-students/{id}', [NewStudentController::class, 'getStudentById']);
+// Route::get('/new-students/{id}', [NewStudentController::class, 'getStudentById']);
 
-Route::put('/new-students', [NewStudentController::class, 'updateStudent'])->name('student.update');
+// Route::put('/new-students', [NewStudentController::class, 'updateStudent'])->name('student.update');
 
-Route::delete('/new-students/{id}', [NewStudentController::class, 'deleteStudent']);
+// Route::delete('/new-students/{id}', [NewStudentController::class, 'deleteStudent']);
 
-Route::delete('/selected-new-students', [NewStudentController::class, 'deleteCheckedStudents'])->name('student.deleteSelected');
+// Route::delete('/selected-new-students', [NewStudentController::class, 'deleteCheckedStudents'])->name('student.deleteSelected');
 
-Route::get('/register', [AuthController::class, 'index']);
+// Route::get('/register', [AuthController::class, 'index']);
 
-Route::post('/register', [AuthController::class, 'registerSubmit'])->name('auth.registersubmit');
+// Route::post('/register', [AuthController::class, 'registerSubmit'])->name('auth.registersubmit');
 
-Route::get('/new-posts', [NewPostController::class, 'index']);
+// Route::get('/new-posts', [NewPostController::class, 'index']);
 
-Route::get('/chart', [ChartController::class, 'index']);
+// Route::get('/chart', [ChartController::class, 'index']);
+
+// Route::get('/bar-chart', [ChartController::class, 'barChart']);
+
+// Route::get('/add-student2', [TestController::class, 'addStudent']);
+
+// Route::get('/add-post2', [TestController::class, 'addPost']);
+
+// Route::get('/students2', [TestController::class, 'getStudents']);
+
+// Route::get('/posts2', [TestController::class, 'getPosts']);
+
+Route::get('/form', [FormController::class, 'index']);
