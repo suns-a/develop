@@ -10,4 +10,9 @@ class FormController extends Controller
     {
         return view('multi-step-form');
     }
+
+    public function formSubmit(Request $request)
+    {
+        return $request->all();
+    }
 }

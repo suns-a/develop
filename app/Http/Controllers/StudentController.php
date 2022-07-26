@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Student;
+use App\Models\Student3;
 
 class StudentController extends Controller
 {
@@ -15,7 +15,17 @@ class StudentController extends Controller
 
     public function addStudent()
     {
-        return view('add-student');
+        $student = new Student3();
+        $student->name = "Peter";
+        $student->email = "PETERjohn@gmail.com";
+        $student->phone = "1234567891";
+        $student->save();
+        return "Record Inserted";
+    }
+
+    public function getStudents()
+    {
+        return Student3::all();
     }
 
     public function storeStudent(Request $request)

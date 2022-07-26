@@ -126,7 +126,9 @@ Route::get('/', function () {
 
 // Route::get('/students', [StudentController::class,'fetchStudents']);
 
-// Route::get('/add-student', [StudentController::class,'addStudent']);
+Route::get('/add-student', [StudentController::class,'addStudent']);
+
+Route::get('/students', [StudentController::class,'getStudents']);
 
 // Route::post('/add-student', [StudentController::class,'storeStudent'])->name('student.store');
 
@@ -229,3 +231,5 @@ Route::get('/', function () {
 // Route::get('/posts2', [TestController::class, 'getPosts']);
 
 Route::get('/form', [FormController::class, 'index']);
+
+Route::post('/form', [FormController::class, 'formSubmit'])->name('form.formsubmit');
